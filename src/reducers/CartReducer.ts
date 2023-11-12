@@ -44,9 +44,23 @@ export const cartReducer = (state: CartType, action: ReducerActionType) => {
         break;
         case 'LOW_QUANTITY':
             products[index2].quantity -= 1
+
+            if(products[index2].quantity <= 0){
+                products.splice(index2, 1)
+                return {...state, products}
+            }
+
+            return state
         break;
         case 'REMOVE_PRODUCTS':
             return {...state, products: []}
+        break;
+        case 'REMOVE_PRODUCT':
+            if (index2 > -1) {
+                products.splice(index2, 1)
+                return {...state, products}
+            }
+            return state;
         break;
     }
 

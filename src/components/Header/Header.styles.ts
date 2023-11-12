@@ -26,6 +26,15 @@ export const LogoTitle = styled.h1`
         font-size: 20px;
         font-weight: 300;
     }
+
+    @media(max-width: 550px){
+        font-size: 30px;
+
+        span{
+            font-size: 15px;
+            font-weight: 300;
+        }
+    }
 `
 
 export const HeaderCart = styled.div`

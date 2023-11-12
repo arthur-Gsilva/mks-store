@@ -37,6 +37,13 @@ export const Cart = ({ open, setClose }: Props) => {
         })
     }
 
+    const removeProduct = (key: number) => {
+        dispatch({ 
+            type: 'REMOVE_PRODUCT', 
+            payload: {key}
+        });
+    };
+
     const finish = () => {
         dispatch({
             type: "REMOVE_PRODUCTS"
@@ -65,10 +72,8 @@ export const Cart = ({ open, setClose }: Props) => {
                 </C.CartHeader>
 
                 <C.CartContent>
-                    {productFilter.length > 0 &&
-                        <>
-                            {state.cart.products.map((item) => (
-                                <C.CartItem key={item.id}>
+                        {state.cart.products.map((item) => (
+                            <C.CartItem key={item.id}>
                                 <C.ImageArea>
                                     <img src={item.photo} />
                                 </C.ImageArea>
@@ -86,10 +91,12 @@ export const Cart = ({ open, setClose }: Props) => {
                                 <C.Price>
                                     R${item.price * item.quantity}
                                 </C.Price>
-                                </C.CartItem>
-                            ))}
-                        </>
-                    }
+
+                                <C.Remove onClick={() => removeProduct(item.id)}>
+                                    <AiOutlineClose />
+                                </C.Remove>
+                            </C.CartItem>
+                        ))}
                     {productFilter.length === 0 &&
                         <p>Seu carrinho está vazio</p>
                     }
