@@ -12,7 +12,7 @@ export const cartInitialState: CartType = {
 export const cartReducer = (state: CartType, action: ReducerActionType) => {
     
     let products = [...state.products]
-    let key: number | null = null
+    let key: number | null 
 
     if (action.payload && action.payload.key) {
         key =  action.payload.key;
